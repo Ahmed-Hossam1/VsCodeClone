@@ -9,39 +9,30 @@ interface IProps {
 const FileExtension = ({ name, isOpen, isFolder }: IProps) => {
   const Extension = name.split(".").pop();
 
-  //Files
+  const ExtIconPath: Record<string, string> = {
+    //Files
+    tsx: "/public/icons/react_ts",
+    html: "/public/icons/html",
+    js: "/public/icons/javascript",
 
-  if (Extension === "tsx") return <IconImg src="/public/icons/react_ts.svg" />;
-  if (Extension === "html") return <IconImg src="/public/icons/html.svg" />;
-  if (Extension == "js") return <IconImg src="/public/icons/javascript.svg" />;
+    //Folder
+    node_modules: "/public/icons/folder-node",
+    components: "/public/icons/folder-components",
+    src: "/public/icons/folder-src",
+    public: "/public/icons/folder-public",
+  };
 
-  //Folders
-  if (Extension == "node_modules" && isFolder)
-    return isOpen ? (
-      <IconImg src="/public/icons/folder-node-open.svg" />
-    ) : (
-      <IconImg src="/public/icons/folder-node.svg" />
-    );
-  if (Extension == "components" && isFolder)
-    return isOpen ? (
-      <IconImg src="/public/icons/folder-components-open.svg" />
-    ) : (
-      <IconImg src="/public/icons/folder-components.svg" />
-    );
-
-  if (Extension == "src" && isFolder)
-    return isOpen ? (
-      <IconImg src="/public/icons/folder-src-open.svg" />
-    ) : (
-      <IconImg src="/public/icons/folder-src.svg" />
-    );
-
-  if (Extension == "public" && isFolder)
-    return isOpen ? (
-      <IconImg src="/public/icons/folder-public-open.svg" />
-    ) : (
-      <IconImg src="/public/icons/folder-public.svg" />
-    );
+  if (
+    Extension &&
+    Object.prototype.hasOwnProperty.call(ExtIconPath, Extension)
+  ) {
+    const path = isFolder
+      ? isOpen
+        ? `${ExtIconPath[Extension]}-open.svg`
+        : `${ExtIconPath[Extension]}.svg`
+      : `${ExtIconPath[Extension]}.svg`;
+    return <IconImg src={path} />;
+  }
 
   if (isFolder && isOpen)
     return <IconImg src="/public/icons/folder-default-open.svg" />;
