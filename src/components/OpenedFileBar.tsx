@@ -7,7 +7,7 @@ const OpenedFileBar = () => {
   return (
     <div className="w-full">
       {TabFiles.map((file) => (
-        <OpenedFileTab file={file} />
+        <OpenedFileTab file={file} key={file.id}/>
       ))}
     </div>
   );
