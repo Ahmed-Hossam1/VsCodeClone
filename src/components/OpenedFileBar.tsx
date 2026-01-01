@@ -6,9 +6,11 @@ const OpenedFileBar = () => {
   const { TabFiles } = useSelector((state: RootState) => state.FileTree);
   return (
     <div className="w-full">
-      {TabFiles.map((file) => (
-        <OpenedFileTab file={file} key={file.id}/>
-      ))}
+      <ul className="flex items-center space-x-1">
+        {TabFiles.map((file) => (
+          <OpenedFileTab file={file} key={file.id} />
+        ))}
+      </ul>
     </div>
   );
 };
