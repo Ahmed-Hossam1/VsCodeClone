@@ -21,7 +21,7 @@ function App() {
             <Preview />
           ) : (
             <IconImg
-              src="/public/icons/vscode.svg"
+              src="/icons/vscode.svg"
               ClassName="w-full h-screen flex justify-center items-center"
             />
           )

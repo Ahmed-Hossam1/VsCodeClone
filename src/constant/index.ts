@@ -1,17 +1,16 @@
-
 export const ExtIconPath: Record<string, string> = {
   //Files
-  html: "/public/icons/html",
-  js: "/public/icons/javascript",
-  jsx: "/public/icons/react",
-  ts: "/public/icons/typescript",
-  tsx: "/public/icons/react_ts",
-  json: "/public/icons/json",
-  css: "/public/icons/css",
+  html: "/icons/html",
+  js: "/icons/javascript",
+  jsx: "/icons/react",
+  ts: "/icons/typescript",
+  tsx: "/icons/react_ts",
+  json: "/icons/json",
+  css: "/icons/css",
 
   //Folder
-  node_modules: "/public/icons/folder-node",
-  components: "/public/icons/folder-components",
-  src: "/public/icons/folder-src",
-  public: "/public/icons/folder-public",
+  node_modules: "/icons/folder-node",
+  components: "/icons/folder-components",
+  src: "/icons/folder-src",
+  public: "/icons/folder-public",
 };
