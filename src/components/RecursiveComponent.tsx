@@ -10,7 +10,7 @@ interface IProps {
   FileTree: IFile;
 }
 const RecursiveComponent = ({ FileTree }: IProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isFolder, name, children } = FileTree;
 
   const FileTabs = useSelector((state: RootState) => state.FileTree.TabFiles);

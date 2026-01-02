@@ -10,7 +10,43 @@ export const FileTree: IFile = {
       id: uuid(),
       name: "node_modules",
       isFolder: true,
-      children: [],
+      children: [
+        {
+          id: uuid(),
+          name: ".vite",
+          isFolder: true,
+          children: [
+            {
+              id: uuid(),
+              name: "index.d.js",
+              isFolder: false,
+              content: `import "./chunk-G3PMV62Z.js";
+
+// node_modules/redux/dist/redux.mjs
+var $$observable = (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
+var symbol_observable_default = $$observable;
+var randomString = () => Math.random().toString(36).substring(7).split("").join(".");
+var ActionTypes = {
+  INIT: @@redux/INIT,
+  REPLACE: @@redux/REPLACE,
+  PROBE_UNKNOWN_ACTION: () => @@redux/PROBE_UNKNOWN_ACTION
+};
+var actionTypes_default = ActionTypes;
+function isPlainObject(obj) {
+  if (typeof obj !== "object" || obj === null)
+    return false;
+  let proto2 = obj;
+  while (Object.getPrototypeOf(proto2) !== null) {
+    proto2 = Object.getPrototypeOf(proto2);
+  }
+  return Object.getPrototypeOf(obj) === proto2 || Object.getPrototypeOf(obj) === null;
+}
+              `,
+              children: [],
+            },
+          ],
+        },
+      ],
     },
     {
       name: "public",
