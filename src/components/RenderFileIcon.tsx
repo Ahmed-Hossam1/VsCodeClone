@@ -7,7 +7,7 @@ interface IProps {
   isOpen?: boolean;
   isFolder?: boolean;
 }
-const FileExtension = ({ name, isOpen, isFolder }: IProps) => {
+const RenderFileIcon = ({ name, isOpen, isFolder }: IProps) => {
   const Extension = name.split(".").pop();
 
   if (
@@ -29,4 +29,4 @@ const FileExtension = ({ name, isOpen, isFolder }: IProps) => {
   return <FileIcon />;
 };
 
-export default FileExtension;
+export default RenderFileIcon;

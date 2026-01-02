@@ -2,18 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { setClickedFile, setTabFile } from "../app/features/FileTreeSlice";
 import type { RootState } from "../app/store";
 import type { IFile } from "../Interface";
-import FileExtension from "./FileExtension";
+import RenderFileIcon from "./RenderFileIcon";
 import CloseIcon from "./SVG/CloseIcon";
 
 interface IProps {
   file: IFile;
 }
+
 const OpenedFileTab = ({ file }: IProps) => {
   const { id, name, content } = file;
   const { TabFiles, ClickedFile } = useSelector(
     (state: RootState) => state.FileTree
   );
   const dispatch = useDispatch();
+
   const handleTabClicked = () => {
     dispatch(
       setClickedFile({ fileName: name, fileContent: content, activeTab: id })
@@ -43,28 +45,29 @@ const OpenedFileTab = ({ file }: IProps) => {
 
   return (
     <div
-      className={`max-w-screen-md flex items-center p-2 border-t-2 ${
-        file.id === ClickedFile.activeTab
-          ? "border-[#cf6ccf]"
-          : "border-transparent"
-      }`}
+      className={`flex items-center  px-3 py-2 border-t-2 cursor-pointer select-none hover:text-white overflow-x-hidden 
+        ${
+          file.id === ClickedFile.activeTab
+            ? "border-[#cf6ccf] bg-[#1c1c1c] text-white"
+            : "border-transparent hover:bg-[#222222] "
+        }`}
       onClick={handleTabClicked}
     >
-      <span>
-        <FileExtension name={name} />
-      </span>
-      <span className="cursor-pointer duration-300 flex justify-center items-center w-fit mx-2 p-1 rounded-md">
-        {name}
-      </span>
-      <span
-        className="cursor-pointer hover:bg-[#64646473] duration-300 flex justify-center items-center w-fit mr-2 p-1 rounded-md"
+      <div className="shrink-0 mr-2">
+        <RenderFileIcon name={name} />
+      </div>
+
+      <span className="flex-1 truncate ">{name}</span>
+
+      <button
+        className="ml-2 p-1 rounded hover:bg-[#64646473] flex items-center justify-center"
         onClick={(e) => {
           e.stopPropagation();
           handleRemove(file.id);
         }}
       >
         <CloseIcon />
-      </span>
+      </button>
     </div>
   );
 };

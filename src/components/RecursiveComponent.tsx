@@ -1,12 +1,11 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setTabFile } from "../app/features/FileTreeSlice";
+import type { RootState } from "../app/store";
 import type { IFile } from "../Interface";
-import FileExtension from "./FileExtension";
+import FileExtension from "./RenderFileIcon";
 import ArrowDown from "./SVG/ArrowDown";
 import ArrowRight from "./SVG/ArrowRight";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../app/store";
-import { setTabFile } from "../app/features/FileTreeSlice";
-import FolderIcon from "./SVG/FolderIcon";
 interface IProps {
   FileTree: IFile;
 }
@@ -24,7 +23,7 @@ const RecursiveComponent = ({ FileTree }: IProps) => {
     dispatch(setTabFile([...FileTabs, FileTree]));
   };
   return (
-    <div className="w-full mb-1 ml-1 cursor-pointer">
+    <div className="mb-1 ml-1 cursor-pointer">
       <div className="flex items-center mb-1">
         {isFolder ? (
           <div onClick={toggle} className="flex items-center">
