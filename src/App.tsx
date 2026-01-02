@@ -1,9 +1,13 @@
+import { useSelector } from "react-redux";
 import Preview from "./components/Preview";
 import RecursiveComponent from "./components/RecursiveComponent";
 import ResizablePanel from "./components/ResizablePanel";
 import { FileTree } from "./data";
+import type { RootState } from "./app/store";
+import IconImg from "./components/IconImg";
 
 function App() {
+  const { TabFiles } = useSelector((state: RootState) => state.FileTree);
   return (
     <div>
       <ResizablePanel
@@ -13,9 +17,14 @@ function App() {
           </div>
         }
         ShowRightSide={
-          <div className="">
+          TabFiles.length > 0 ? (
             <Preview />
-          </div>
+          ) : (
+            <IconImg
+              src="/public/icons/vscode.svg"
+              ClassName="w-full h-screen flex justify-center items-center"
+            />
+          )
         }
       />
     </div>
