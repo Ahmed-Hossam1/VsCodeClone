@@ -1,8 +1,7 @@
-import { FaFolder } from "react-icons/fa";
 
 const FolderIcon = () => {
   return (
-    <FaFolder />
+    <img className="w-5 h-5" src="/public/icons/folder-default.svg" />
   );
 };
 

@@ -8,12 +8,12 @@ const OpenedFileBar = () => {
     (state: RootState) => state.FileTree
   );
   return (
-    <div>
-      <ul className="flex items-center space-x-1">
+    <div className="w-full">
+      <div className="flex items-center border-b-[1px] border-[#ffffff1f]">
         {TabFiles.map((file) => (
           <OpenedFileTab file={file} key={file.id} />
         ))}
-      </ul>
+      </div>
 
       <SyntaxHighlighter content={ClickedFile.fileContent} />
     </div>

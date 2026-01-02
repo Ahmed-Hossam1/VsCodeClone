@@ -5,55 +5,48 @@ import ArrowDown from "./SVG/ArrowDown";
 import ArrowRight from "./SVG/ArrowRight";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../app/store";
-import { setActiveTab, setTabFile } from "../app/features/FileTreeSlice";
+import { setTabFile } from "../app/features/FileTreeSlice";
+import FolderIcon from "./SVG/FolderIcon";
 interface IProps {
   FileTree: IFile;
 }
 const RecursiveComponent = ({ FileTree }: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const { isFolder, name, children } = FileTree;
 
   const FileTabs = useSelector((state: RootState) => state.FileTree.TabFiles);
   const dispatch = useDispatch();
 
+  const toggle = () => setIsOpen((prev) => !prev);
+
   const handleAddTab = () => {
     if (FileTabs.find((file) => file.id === FileTree.id)) return;
     dispatch(setTabFile([...FileTabs, FileTree]));
-    dispatch(setActiveTab(FileTree.id));
   };
   return (
-    <div className="ml-4">
-      <div
-        className="flex items-center space-x-1 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {FileTree.isFolder ? (
-          <div className="flex items-center space-x-1 cursor-pointer">
-            {isOpen ? <ArrowDown /> : <ArrowRight />}
-            <FileExtension
-              name={FileTree.name}
-              isOpen={isOpen}
-              isFolder={FileTree.isFolder}
-            />
-            <div>{FileTree.name}</div>
+    <div className="w-full mb-1 ml-1 cursor-pointer">
+      <div className="flex items-center mb-1">
+        {isFolder ? (
+          <div onClick={toggle} className="flex items-center">
+            <span className="mr-2">
+              {isOpen ? <ArrowDown /> : <ArrowRight />}
+            </span>
+
+            <FileExtension name={name} isFolder isOpen={isOpen} />
+            <span className="ml-2 text-lg">{name}</span>
           </div>
         ) : (
-          <div
-            className="flex items-center space-x-1 cursor-pointer"
-            onClick={handleAddTab}
-          >
-            <FileExtension
-              name={FileTree.name}
-              isOpen={isOpen}
-              isFolder={FileTree.isFolder}
-            />
-            <div>{FileTree.name}</div>
+          <div className="flex items-center ml-6" onClick={handleAddTab}>
+            <FileExtension name={name} />
+            <span className="ml-2 text-lg">{name}</span>
           </div>
         )}
       </div>
+
       {isOpen &&
-        FileTree.children &&
-        FileTree.children.map((File, idx) => (
-          <RecursiveComponent key={idx} FileTree={File} />
+        children &&
+        children.map((file, idx) => (
+          <RecursiveComponent FileTree={file} key={idx} />
         ))}
     </div>
   );

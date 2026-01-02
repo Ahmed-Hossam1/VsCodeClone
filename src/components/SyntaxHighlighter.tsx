@@ -10,10 +10,10 @@ const Highlighter = ({ content }: IProps) => {
         language="javascript"
         style={coldarkDark}
         customStyle={{
-          // backgroundColor : 'transparent',
+          backgroundColor : 'transparent',
           height: "100vh",
           width: "100%",
-          overflowX: "hidden",
+          overflowX: "auto",
           fontSize: "1.5rem",
         }}
         showLineNumbers
