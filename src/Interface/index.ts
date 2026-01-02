@@ -1,5 +1,5 @@
 export interface IFile {
-  id?: string | number;
+  id: string;
   name: string;
   isFolder: boolean;
   content?: string;

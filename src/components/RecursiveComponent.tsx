@@ -5,7 +5,7 @@ import ArrowDown from "./SVG/ArrowDown";
 import ArrowRight from "./SVG/ArrowRight";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../app/store";
-import { setTabFile } from "../app/features/FileTreeSlice";
+import { setActiveTab, setTabFile } from "../app/features/FileTreeSlice";
 interface IProps {
   FileTree: IFile;
 }
@@ -18,6 +18,7 @@ const RecursiveComponent = ({ FileTree }: IProps) => {
   const handleAddTab = () => {
     if (FileTabs.find((file) => file.id === FileTree.id)) return;
     dispatch(setTabFile([...FileTabs, FileTree]));
+    dispatch(setActiveTab(FileTree.id));
   };
   return (
     <div className="ml-4">
