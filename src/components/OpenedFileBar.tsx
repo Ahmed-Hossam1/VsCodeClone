@@ -1,20 +1,21 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "../app/store";
 import OpenedFileTab from "./OpenedFileTab";
+import SyntaxHighlighter from "./SyntaxHighlighter";
 
 const OpenedFileBar = () => {
   const { TabFiles, ClickedFile } = useSelector(
     (state: RootState) => state.FileTree
   );
   return (
-    <div className="w-full ">
+    <div>
       <ul className="flex items-center space-x-1">
         {TabFiles.map((file) => (
           <OpenedFileTab file={file} key={file.id} />
         ))}
       </ul>
 
-      <div className="text-black">{ClickedFile.fileContent}</div>
+      <SyntaxHighlighter content={ClickedFile.fileContent} />
     </div>
   );
 };
